@@ -39,7 +39,7 @@ public class Booking {
 
     @OneToOne
     @JoinColumn(name = "amd_id")
-    private Amenitites amenitites;
+    private Amenities amenities;
 
 
     public long getId() {
@@ -146,11 +146,11 @@ public class Booking {
         this.customer = customer;
     }
 
-    public Amenitites getAmenitites() {
-        return amenitites;
+    public Amenities getAmenities() {
+        return amenities;
     }
 
-    public void setAmenitites(Amenitites amenitites) {
-        this.amenitites = amenitites;
+    public void setAmenities(Amenities amenities) {
+        this.amenities = amenities;
     }
 }

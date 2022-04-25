@@ -1,6 +1,12 @@
 package com.hotel.management.Model;
 
+//import java.sql.Date;
+
+import java.util.Date;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Customer {
@@ -14,14 +20,24 @@ public class Customer {
     private String password;
     private String name;
     private String address;
-    private String dob;
+    
+//    @Temporal(TemporalType.DATE)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy") 
+    private Date dob;
+    
     private String mobile;
 
     public long getId() {
         return id;
     }
 
-    public String getEmail() {
+    @Override
+	public String toString() {
+		return "Customer [id=" + id + ", email=" + email + ", password=" + password + ", name=" + name + ", address="
+				+ address + ", dob=" + dob + ", mobile=" + mobile + "]";
+	}
+
+	public String getEmail() {
         return email;
     }
 
@@ -37,7 +53,7 @@ public class Customer {
         return address;
     }
 
-    public String getDob() {
+    public Date getDob() {
         return dob;
     }
 
@@ -65,7 +81,7 @@ public class Customer {
         this.address = address;
     }
 
-    public void setDob(String dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 

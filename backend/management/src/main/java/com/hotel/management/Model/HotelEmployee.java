@@ -68,4 +68,17 @@ public class HotelEmployee {
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
+
+    @Override
+    public String toString() {
+        return "HotelEmployee{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", dob='" + dob + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", hotel=" + hotel +
+                '}';
+    }
 }
