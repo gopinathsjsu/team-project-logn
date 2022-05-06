@@ -1,10 +1,15 @@
 package com.hotel.management.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
 public class HotelEmployee {
 
+    public HotelEmployee(){
+
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "emp_id")
@@ -19,6 +24,7 @@ public class HotelEmployee {
 
     @ManyToOne()
     @JoinColumn(name = "hotel", referencedColumnName = "hotel_id")
+//    @JsonIgnoreProperties({})
     private Hotel hotel;
 
     public long getId() {

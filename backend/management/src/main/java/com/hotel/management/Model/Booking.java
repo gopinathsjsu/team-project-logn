@@ -1,156 +1,75 @@
 package com.hotel.management.Model;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
+@Getter @Setter
 public class Booking {
+    public Booking() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "booking_id")
     private long id;
 
-    private String roomType;
+//    private String roomType;
 
 //    @Temporal(TemporalType.DATE)
 //    Date stayFrom;
     private String stayFrom;
     private String StayUpto;
 
-    private double roomrate;
+//    private double roomrate;
     private double totalBill;
-    private boolean isCancelled;
-    private int numberOfAdults;
-    private int numberOfChildren;
-    private int numberOfRooms;
 
-    @OneToOne
-    @JoinColumn(name = "hote_id")
+    private boolean isCancelled=false;
+
+//    private int numberOfAdults;
+//    private int numberOfChildren;
+//    private int numberOfRooms;
+    private int numberOfGuests;
+
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "hotel_id")
+    @JsonIgnoreProperties({"rooms","city","state","country","holidayMultiplier","seasonalMulitplier"})
+//    @JsonIgnore
     private Hotel hotel;
 
-    @OneToOne
-    @JoinColumn(name = "loc_id")
-    private Location location;
-
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "cust_id")
+//    @JsonIgnore
+    @JsonIgnoreProperties({"email","password","address","dob","mobile"})
     private Customer customer;
 
-    @OneToOne
-    @JoinColumn(name = "amd_id")
-    private Amenities amenities;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"rooms"})
+//    @JsonIgnore
+    private List<RoomBooked> roomBookedList;
 
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getRoomType() {
-        return roomType;
-    }
-
-    public void setRoomType(String roomType) {
-        this.roomType = roomType;
-    }
-
-    public String getStayFrom() {
-        return stayFrom;
-    }
-
-    public void setStayFrom(String stayFrom) {
-        this.stayFrom = stayFrom;
-    }
-
-    public String getStayUpto() {
-        return StayUpto;
-    }
-
-    public void setStayUpto(String stayUpto) {
-        StayUpto = stayUpto;
-    }
-
-    public double getRoomrate() {
-        return roomrate;
-    }
-
-    public void setRoomrate(double roomrate) {
-        this.roomrate = roomrate;
-    }
-
-    public double getTotalBill() {
-        return totalBill;
-    }
-
-    public void setTotalBill(double totalBill) {
-        this.totalBill = totalBill;
-    }
-
-    public boolean isCancelled() {
-        return isCancelled;
-    }
-
-    public void setCancelled(boolean cancelled) {
-        isCancelled = cancelled;
-    }
-
-    public int getNumberOfAdults() {
-        return numberOfAdults;
-    }
-
-    public void setNumberOfAdults(int numberOfAdults) {
-        this.numberOfAdults = numberOfAdults;
-    }
-
-    public int getNumberOfChildren() {
-        return numberOfChildren;
-    }
-
-    public void setNumberOfChildren(int numberOfChildren) {
-        this.numberOfChildren = numberOfChildren;
-    }
-
-    public int getNumberOfRooms() {
-        return numberOfRooms;
-    }
-
-    public void setNumberOfRooms(int numberOfRooms) {
-        this.numberOfRooms = numberOfRooms;
-    }
-
-    public Hotel getHotel() {
-        return hotel;
-    }
-
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public void setLocation(Location location) {
-        this.location = location;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public Amenities getAmenities() {
-        return amenities;
-    }
-
-    public void setAmenities(Amenities amenities) {
-        this.amenities = amenities;
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "id=" + id +
+                ", stayFrom='" + stayFrom + '\'' +
+                ", StayUpto='" + StayUpto + '\'' +
+                ", totalBill=" + totalBill +
+                ", isCancelled=" + isCancelled +
+                ", numberOfGuests=" + numberOfGuests +
+                ", hotel=" + hotel +
+                ", customer=" + customer +
+                ", roomBookedList=" + roomBookedList +
+                '}';
     }
 }

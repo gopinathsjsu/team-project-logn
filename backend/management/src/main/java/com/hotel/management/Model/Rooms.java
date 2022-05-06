@@ -11,11 +11,25 @@ public class Rooms {
     private long id;
 
     private String type;
-    private String numberOfRooms;
+    private int numberOfRooms;
+
+    private double rate;
 
     @ManyToOne
-    @JoinColumn(name="hote_id")
+    @JoinColumn(name="hotel", referencedColumnName="hotel_id")
     private Hotel hotel;
+
+    public Rooms(){
+
+    }
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
 
     public Hotel getHotel() {
         return hotel;
@@ -23,14 +37,6 @@ public class Rooms {
 
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public String getType() {
@@ -41,11 +47,29 @@ public class Rooms {
         this.type = type;
     }
 
-    public String getNumberOfRooms() {
+    public int getNumberOfRooms() {
         return numberOfRooms;
     }
 
-    public void setNumberOfRooms(String numberOfRooms) {
+    public void setNumberOfRooms(int numberOfRooms) {
         this.numberOfRooms = numberOfRooms;
+    }
+
+    public double getRate() {
+        return rate;
+    }
+
+    public void setRate(double rate) {
+        this.rate = rate;
+    }
+
+    @Override
+    public String toString() {
+        return "Rooms{" +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", numberOfRooms=" + numberOfRooms +
+                ", rate=" + rate +
+                '}';
     }
 }

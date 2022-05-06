@@ -1,9 +1,14 @@
 package com.hotel.management.Model;
 
+import lombok.AllArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
+@AllArgsConstructor
 public class Amenities {
+    public Amenities() {
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +21,8 @@ public class Amenities {
     private boolean swimmingPool;
     private boolean parking;
     private boolean gym;
+    private boolean allMeals;
+
 
     public long getId() {
         return id;
@@ -71,5 +78,13 @@ public class Amenities {
 
     public void setGym(boolean gym) {
         this.gym = gym;
+    }
+
+    public boolean isAllMeals() {
+        return allMeals;
+    }
+
+    public void setAllMeals(boolean allMeals) {
+        this.allMeals = allMeals;
     }
 }
