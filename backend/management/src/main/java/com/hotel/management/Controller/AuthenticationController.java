@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping("/")
+//@RequestMapping("/")
 public class AuthenticationController {
     @Autowired
     CustomerService customerService;
@@ -43,9 +43,8 @@ public class AuthenticationController {
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         password = encoder.encode(password);
         data.setPassword(password);
-        customerService.addCustomer(data);
 
-        return new ResponseEntity<>("success", HttpStatus.ACCEPTED);
+        return customerService.addCustomer(data);
     }
 
 

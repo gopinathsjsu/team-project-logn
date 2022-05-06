@@ -28,7 +28,9 @@ public class CustomerServiceImpl implements CustomerService , UserDetailsService
 
     @Override
     public ResponseEntity<String> addCustomer(Customer c) {
+        System.out.println("user email - "+c.getEmail());
         Customer customer = customerRepository.findByEmail(c.getEmail());
+
         if(customer!=null){
             return new ResponseEntity<>("user already exists", HttpStatus.BAD_REQUEST);
         }

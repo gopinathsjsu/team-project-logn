@@ -30,18 +30,18 @@ public class CustomerController {
 
 
 
-	@PostMapping("/signup")
-	public ResponseEntity<String> addUser(@RequestBody Customer data) {
-		System.out.println("->"+data);
-		
-		String password = data.getPassword();
-		PasswordEncoder encoder = new BCryptPasswordEncoder();
-		password = encoder.encode(password);
-		data.setPassword(password);
-
-		return customerService.addCustomer(data);
-
-	}
+//	@PostMapping("/signup")
+//	public ResponseEntity<String> addUser(@RequestBody Customer data) {
+//		System.out.println("->"+data);
+//
+//		String password = data.getPassword();
+//		PasswordEncoder encoder = new BCryptPasswordEncoder();
+//		password = encoder.encode(password);
+//		data.setPassword(password);
+//
+//		return customerService.addCustomer(data);
+//
+//	}
 
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Customer> updateCustomer(@RequestBody Customer c, @PathVariable long id){

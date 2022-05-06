@@ -1,0 +1,1416 @@
+# Customer Signup
+
+1.
+localhost:8000/customer/signup 
+(POST-request)
+
+request body -> 
+    {
+    "name":"munjal",
+    "email":"hello@gmail.com",
+    "password":"hello",
+    "address":"171 w julian st",
+    "dob":"07/10/1997",
+    "mobile":"789456123"
+}
+
+response -> success (200 status code)
+         -> user already exists (400 status code)
+
+
+2.
+localhost:8000/customer/update/{id}  (PUT)
+// send all fields except password(password not updating once set)
+
+request body -> 
+    {
+    "name":"munjal",
+    "email":"hello@gmail.com",
+    "address":"171 w julian st",
+    "dob":"07/10/1997",
+    "mobile":"789456123"
+}
+
+response -> 
+    {
+    "id": 3,
+    "email": "hello2@gmail.com",
+    "password": "$2a$10$NYUG10QOr4hbd2IGtB764uuB4cvtevV9fOpGCNg/GqCV/q434EmCK",
+    "name": "munjal",
+    "address": "171 w julian st",
+    "dob": "07/10/1997",
+    "mobile": "789456123"
+}
+
+
+3. 
+localhost:8000/customer/profile/{id}  (GET)
+response -> {
+    "id": 3,
+    "email": "hello2@gmail.com",
+    "password": "$2a$10$NYUG10QOr4hbd2IGtB764uuB4cvtevV9fOpGCNg/GqCV/q434EmCK",
+    "name": "munjal",
+    "address": "171 w julian st",
+    "dob": "07/10/1997",
+    "mobile": "789456123"
+}
+
+4. enroll user to be a customer of particular hotel (he gets 5000 bonus points)
+localhost:8000/customer/enroll/{custid}/{id}
+
+response -> "success" (200)
+
+
+5. 
+localhost:8000/booking/create  (POST)
+
+-> TO-DO on backend -> checking if roombookings are available
+
+request -> 
+{
+    "custId":1,
+    "hotelId":1,
+    "stayFrom":"10/14/2022",
+    "stayUpto":"10/16/2022",
+    "totalBill":100.77,
+    "numberOfGuests":5,
+    "roomBookedDtos":[
+        {
+            "roomId":"1",
+            "rate":"50.0",
+            "amenitiesDto":{
+                "dailyBreakfast":false,
+                "lunch":true,
+                "dinner":false,
+                "swimmingPool":true,
+                "parking":true,
+                "gym":false,
+                "allMeals":false
+            }
+        },
+        {
+            "roomId":"1",
+            "rate":"50.77",
+            "amenitiesDto":{
+                "dailyBreakfast":false,
+                "lunch":false,
+                "dinner":false,
+                "swimmingPool":true,
+                "parking":true,
+                "gym":false,
+                "allMeals":true
+            }
+        }
+    ]
+
+}
+
+response -> {
+    "id": 7,
+    "stayFrom": "10/14/2022",
+    "totalBill": 100.77,
+    "numberOfGuests": 5,
+    "hotel": {
+        "id": 1,
+        "name": "abc3",
+        "mobile": "123456789",
+        "address": "171 w julian st"
+    },
+    "customer": {
+        "id": 1,
+        "name": "munjal"
+    },
+    "roomBookedList": [
+        {
+            "id": 31,
+            "amenities": {
+                "id": 27,
+                "dailyBreakfast": false,
+                "lunch": true,
+                "dinner": false,
+                "swimmingPool": true,
+                "parking": true,
+                "gym": false,
+                "allMeals": false
+            },
+            "rate": 50.0
+        },
+        {
+            "id": 32,
+            "amenities": {
+                "id": 28,
+                "dailyBreakfast": false,
+                "lunch": false,
+                "dinner": false,
+                "swimmingPool": true,
+                "parking": true,
+                "gym": false,
+                "allMeals": true
+            },
+            "rate": 50.77
+        }
+    ],
+    "cancelled": false,
+    "stayUpto": "10/16/2022"
+}
+
+
+6.
+localhost:8000/booking/cancel/{id}
+
+response -> "success" (200)
+
+
+7. 
+localhost:8000/booking/getall/hotel/{hotel_id}
+
+request -
+response -> [
+    {
+        "id": 1,
+        "stayFrom": "10/14/2022",
+        "totalBill": 100.77,
+        "numberOfGuests": 5,
+        "hotel": {
+            "id": 1,
+            "name": "abc3",
+            "mobile": "123456789",
+            "address": "171 w julian st"
+        },
+        "customer": {
+            "id": 1,
+            "name": "munjal"
+        },
+        "roomBookedList": [
+            {
+                "id": 19,
+                "amenities": {
+                    "id": 15,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 20,
+                "amenities": {
+                    "id": 16,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            }
+        ],
+        "cancelled": false,
+        "stayUpto": "10/16/2022"
+    },
+    {
+        "id": 2,
+        "stayFrom": "10/14/2022",
+        "totalBill": 100.77,
+        "numberOfGuests": 5,
+        "hotel": {
+            "id": 1,
+            "name": "abc3",
+            "mobile": "123456789",
+            "address": "171 w julian st"
+        },
+        "customer": {
+            "id": 1,
+            "name": "munjal"
+        },
+        "roomBookedList": [
+            {
+                "id": 5,
+                "amenities": {
+                    "id": 1,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 6,
+                "amenities": {
+                    "id": 2,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            },
+            {
+                "id": 21,
+                "amenities": {
+                    "id": 17,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 22,
+                "amenities": {
+                    "id": 18,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            }
+        ],
+        "cancelled": true,
+        "stayUpto": "10/16/2022"
+    },
+    {
+        "id": 3,
+        "stayFrom": "10/14/2022",
+        "totalBill": 100.77,
+        "numberOfGuests": 5,
+        "hotel": {
+            "id": 1,
+            "name": "abc3",
+            "mobile": "123456789",
+            "address": "171 w julian st"
+        },
+        "customer": {
+            "id": 1,
+            "name": "munjal"
+        },
+        "roomBookedList": [
+            {
+                "id": 7,
+                "amenities": {
+                    "id": 3,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 8,
+                "amenities": {
+                    "id": 4,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            },
+            {
+                "id": 23,
+                "amenities": {
+                    "id": 19,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 24,
+                "amenities": {
+                    "id": 20,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            }
+        ],
+        "cancelled": false,
+        "stayUpto": "10/16/2022"
+    },
+    {
+        "id": 4,
+        "stayFrom": "10/14/2022",
+        "totalBill": 100.77,
+        "numberOfGuests": 5,
+        "hotel": {
+            "id": 1,
+            "name": "abc3",
+            "mobile": "123456789",
+            "address": "171 w julian st"
+        },
+        "customer": {
+            "id": 1,
+            "name": "munjal"
+        },
+        "roomBookedList": [
+            {
+                "id": 9,
+                "amenities": {
+                    "id": 5,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 10,
+                "amenities": {
+                    "id": 6,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            },
+            {
+                "id": 25,
+                "amenities": {
+                    "id": 21,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 26,
+                "amenities": {
+                    "id": 22,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            }
+        ],
+        "cancelled": false,
+        "stayUpto": "10/16/2022"
+    },
+    {
+        "id": 5,
+        "stayFrom": "10/14/2022",
+        "totalBill": 100.77,
+        "numberOfGuests": 5,
+        "hotel": {
+            "id": 1,
+            "name": "abc3",
+            "mobile": "123456789",
+            "address": "171 w julian st"
+        },
+        "customer": {
+            "id": 1,
+            "name": "munjal"
+        },
+        "roomBookedList": [
+            {
+                "id": 11,
+                "amenities": {
+                    "id": 7,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 12,
+                "amenities": {
+                    "id": 8,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            },
+            {
+                "id": 27,
+                "amenities": {
+                    "id": 23,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 28,
+                "amenities": {
+                    "id": 24,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            }
+        ],
+        "cancelled": false,
+        "stayUpto": "10/16/2022"
+    },
+    {
+        "id": 6,
+        "stayFrom": "10/14/2022",
+        "totalBill": 100.77,
+        "numberOfGuests": 5,
+        "hotel": {
+            "id": 1,
+            "name": "abc3",
+            "mobile": "123456789",
+            "address": "171 w julian st"
+        },
+        "customer": {
+            "id": 1,
+            "name": "munjal"
+        },
+        "roomBookedList": [
+            {
+                "id": 13,
+                "amenities": {
+                    "id": 9,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 14,
+                "amenities": {
+                    "id": 10,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            },
+            {
+                "id": 29,
+                "amenities": {
+                    "id": 25,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 30,
+                "amenities": {
+                    "id": 26,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            }
+        ],
+        "cancelled": false,
+        "stayUpto": "10/16/2022"
+    },
+    {
+        "id": 7,
+        "stayFrom": "10/14/2022",
+        "totalBill": 100.77,
+        "numberOfGuests": 5,
+        "hotel": {
+            "id": 1,
+            "name": "abc3",
+            "mobile": "123456789",
+            "address": "171 w julian st"
+        },
+        "customer": {
+            "id": 1,
+            "name": "munjal"
+        },
+        "roomBookedList": [
+            {
+                "id": 15,
+                "amenities": {
+                    "id": 11,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 16,
+                "amenities": {
+                    "id": 12,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            },
+            {
+                "id": 31,
+                "amenities": {
+                    "id": 27,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 32,
+                "amenities": {
+                    "id": 28,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            }
+        ],
+        "cancelled": false,
+        "stayUpto": "10/16/2022"
+    }
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# add hotel
+
+{
+    "name":"abc",
+    "mobile":"123456789",
+    "city":"san jose",
+    "state":"california",
+    "country":"usa",
+    "holidayMultiplier":1.5,
+    "seasonalMulitplier":2.15,
+    "address":"171 w julian st",
+    "roomDtoList":[
+        {
+            "type":"double",
+            "rate":50.0,
+            "numberOfRooms":10
+        },
+        {
+            "type":"single",
+            "rate":30,
+            "numberOfRooms":10
+        }
+    ]
+}
+
+8. 
+localhost:8000/booking/getall/customer/{cust_id}
+
+
+response - [
+    {
+        "id": 1,
+        "stayFrom": "10/14/2022",
+        "totalBill": 100.77,
+        "numberOfGuests": 5,
+        "hotel": {
+            "id": 1,
+            "name": "abc3",
+            "mobile": "123456789",
+            "address": "171 w julian st"
+        },
+        "customer": {
+            "id": 1,
+            "name": "munjal"
+        },
+        "roomBookedList": [
+            {
+                "id": 19,
+                "amenities": {
+                    "id": 15,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 20,
+                "amenities": {
+                    "id": 16,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            }
+        ],
+        "cancelled": false,
+        "stayUpto": "10/16/2022"
+    },
+    {
+        "id": 2,
+        "stayFrom": "10/14/2022",
+        "totalBill": 100.77,
+        "numberOfGuests": 5,
+        "hotel": {
+            "id": 1,
+            "name": "abc3",
+            "mobile": "123456789",
+            "address": "171 w julian st"
+        },
+        "customer": {
+            "id": 1,
+            "name": "munjal"
+        },
+        "roomBookedList": [
+            {
+                "id": 5,
+                "amenities": {
+                    "id": 1,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 6,
+                "amenities": {
+                    "id": 2,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            },
+            {
+                "id": 21,
+                "amenities": {
+                    "id": 17,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 22,
+                "amenities": {
+                    "id": 18,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            }
+        ],
+        "cancelled": true,
+        "stayUpto": "10/16/2022"
+    },
+    {
+        "id": 3,
+        "stayFrom": "10/14/2022",
+        "totalBill": 100.77,
+        "numberOfGuests": 5,
+        "hotel": {
+            "id": 1,
+            "name": "abc3",
+            "mobile": "123456789",
+            "address": "171 w julian st"
+        },
+        "customer": {
+            "id": 1,
+            "name": "munjal"
+        },
+        "roomBookedList": [
+            {
+                "id": 7,
+                "amenities": {
+                    "id": 3,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 8,
+                "amenities": {
+                    "id": 4,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            },
+            {
+                "id": 23,
+                "amenities": {
+                    "id": 19,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 24,
+                "amenities": {
+                    "id": 20,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            }
+        ],
+        "cancelled": false,
+        "stayUpto": "10/16/2022"
+    },
+    {
+        "id": 4,
+        "stayFrom": "10/14/2022",
+        "totalBill": 100.77,
+        "numberOfGuests": 5,
+        "hotel": {
+            "id": 1,
+            "name": "abc3",
+            "mobile": "123456789",
+            "address": "171 w julian st"
+        },
+        "customer": {
+            "id": 1,
+            "name": "munjal"
+        },
+        "roomBookedList": [
+            {
+                "id": 9,
+                "amenities": {
+                    "id": 5,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 10,
+                "amenities": {
+                    "id": 6,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            },
+            {
+                "id": 25,
+                "amenities": {
+                    "id": 21,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 26,
+                "amenities": {
+                    "id": 22,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            }
+        ],
+        "cancelled": false,
+        "stayUpto": "10/16/2022"
+    },
+    {
+        "id": 5,
+        "stayFrom": "10/14/2022",
+        "totalBill": 100.77,
+        "numberOfGuests": 5,
+        "hotel": {
+            "id": 1,
+            "name": "abc3",
+            "mobile": "123456789",
+            "address": "171 w julian st"
+        },
+        "customer": {
+            "id": 1,
+            "name": "munjal"
+        },
+        "roomBookedList": [
+            {
+                "id": 11,
+                "amenities": {
+                    "id": 7,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 12,
+                "amenities": {
+                    "id": 8,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            },
+            {
+                "id": 27,
+                "amenities": {
+                    "id": 23,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 28,
+                "amenities": {
+                    "id": 24,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            }
+        ],
+        "cancelled": false,
+        "stayUpto": "10/16/2022"
+    },
+    {
+        "id": 6,
+        "stayFrom": "10/14/2022",
+        "totalBill": 100.77,
+        "numberOfGuests": 5,
+        "hotel": {
+            "id": 1,
+            "name": "abc3",
+            "mobile": "123456789",
+            "address": "171 w julian st"
+        },
+        "customer": {
+            "id": 1,
+            "name": "munjal"
+        },
+        "roomBookedList": [
+            {
+                "id": 13,
+                "amenities": {
+                    "id": 9,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 14,
+                "amenities": {
+                    "id": 10,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            },
+            {
+                "id": 29,
+                "amenities": {
+                    "id": 25,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 30,
+                "amenities": {
+                    "id": 26,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            }
+        ],
+        "cancelled": false,
+        "stayUpto": "10/16/2022"
+    },
+    {
+        "id": 7,
+        "stayFrom": "10/14/2022",
+        "totalBill": 100.77,
+        "numberOfGuests": 5,
+        "hotel": {
+            "id": 1,
+            "name": "abc3",
+            "mobile": "123456789",
+            "address": "171 w julian st"
+        },
+        "customer": {
+            "id": 1,
+            "name": "munjal"
+        },
+        "roomBookedList": [
+            {
+                "id": 15,
+                "amenities": {
+                    "id": 11,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 16,
+                "amenities": {
+                    "id": 12,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            },
+            {
+                "id": 31,
+                "amenities": {
+                    "id": 27,
+                    "dailyBreakfast": false,
+                    "lunch": true,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": false
+                },
+                "rate": 50.0
+            },
+            {
+                "id": 32,
+                "amenities": {
+                    "id": 28,
+                    "dailyBreakfast": false,
+                    "lunch": false,
+                    "dinner": false,
+                    "swimmingPool": true,
+                    "parking": true,
+                    "gym": false,
+                    "allMeals": true
+                },
+                "rate": 50.77
+            }
+        ],
+        "cancelled": false,
+        "stayUpto": "10/16/2022"
+    }
+]
+
+
+9. Get booking by booking id
+localhost:8000/booking/get/id (GET)
+
+response - {
+    "id": 1,
+    "stayFrom": "10/14/2022",
+    "totalBill": 100.77,
+    "numberOfGuests": 5,
+    "hotel": {
+        "id": 1,
+        "name": "abc3",
+        "mobile": "123456789",
+        "address": "171 w julian st"
+    },
+    "customer": {
+        "id": 1,
+        "name": "munjal"
+    },
+    "roomBookedList": [
+        {
+            "id": 19,
+            "amenities": {
+                "id": 15,
+                "dailyBreakfast": false,
+                "lunch": true,
+                "dinner": false,
+                "swimmingPool": true,
+                "parking": true,
+                "gym": false,
+                "allMeals": false
+            },
+            "rate": 50.0
+        },
+        {
+            "id": 20,
+            "amenities": {
+                "id": 16,
+                "dailyBreakfast": false,
+                "lunch": false,
+                "dinner": false,
+                "swimmingPool": true,
+                "parking": true,
+                "gym": false,
+                "allMeals": true
+            },
+            "rate": 50.77
+        }
+    ],
+    "cancelled": false,
+    "stayUpto": "10/16/2022"
+}
+
+
+10. search hotel by either city or hotel name
+localhost:8000/hotel/search?query=abc2
+
+response - [
+    {
+        "id": 3,
+        "name": "abc2",
+        "mobile": "123456789",
+        "city": "san jose",
+        "state": "california",
+        "country": "usa",
+        "address": "171 w julian st",
+        "holidayMultiplier": 1.5,
+        "seasonalMulitplier": 2.15,
+        "rooms": [
+            {
+                "id": 5,
+                "type": "double",
+                "numberOfRooms": 10,
+                "rate": 50.0
+            },
+            {
+                "id": 6,
+                "type": "single",
+                "numberOfRooms": 10,
+                "rate": 30.0
+            }
+        ]
+    }
+]
+
+11. add hotel
+localhost:8000/hotel/add (POST)
+
+room type either must be -> "single", "double" or "suite"
+
+request - {
+    "name":"abc4",
+    "mobile":"123456789",
+    "city":"san jose",
+    "state":"california",
+    "country":"usa",
+    "holidayMultiplier":1.5,
+    "seasonalMulitplier":2.15,
+    "address":"171 w julian st",
+    "roomDtoList":[
+        {
+            "type":"double",
+            "rate":50.0,
+            "numberOfRooms":10
+        },
+        {
+            "type":"single",
+            "rate":30,
+            "numberOfRooms":10
+        }
+    ]
+}
+
+
+response - {
+    "id": 6,
+    "name": "abc4",
+    "mobile": "123456789",
+    "city": "san jose",
+    "state": "california",
+    "country": "usa",
+    "address": "171 w julian st",
+    "holidayMultiplier": 1.5,
+    "seasonalMulitplier": 2.15,
+    "rooms": [
+        {
+            "id": 11,
+            "type": "double",
+            "numberOfRooms": 10,
+            "rate": 50.0
+        },
+        {
+            "id": 12,
+            "type": "single",
+            "numberOfRooms": 10,
+            "rate": 30.0
+        }
+    ]
+}
+
+
+
+12. 
+localhost:8000/hotel/get/1 (GET)
+
+
+response - {
+    "id": 1,
+    "name": "abc3",
+    "mobile": "123456789",
+    "city": "san diego",
+    "state": "california",
+    "country": "usa",
+    "address": "171 w julian st",
+    "holidayMultiplier": 1.5,
+    "seasonalMulitplier": 2.15,
+    "rooms": [
+        {
+            "id": 1,
+            "type": "double",
+            "numberOfRooms": 0,
+            "rate": 50.0
+        },
+        {
+            "id": 2,
+            "type": "single",
+            "numberOfRooms": 10,
+            "rate": 30.0
+        }
+    ]
+}
+
+
+13.
