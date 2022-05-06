@@ -1,7 +1,7 @@
 # Customer Signup
 
 1.
-localhost:8000/customer/signup 
+localhost:8000/signup 
 (POST-request)
 
 request body -> 
@@ -16,6 +16,13 @@ request body ->
 
 response -> success (200 status code)
          -> user already exists (400 status code)
+
+1.1 localhost:8000/login   (POST)
+request -> {
+    "username":email@gmail.com,
+    "password":password
+}
+
 
 
 2.
