@@ -8,6 +8,10 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  /* background-color: #e8f5fb; */
+  background-image: url("./public/pool.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 a {
@@ -17,4 +21,30 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+.vl {
+  border-left: 2px dotted black;
+  height: 50px;
 }
