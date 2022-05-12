@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import config from '../config'
 
 export default function Login() {
   const [email, setEmail] = useState("");

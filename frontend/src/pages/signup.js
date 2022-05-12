@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { add } from "date-fns";
+import config from '../config'
 
 export default function SignUp() {
   const [email, setEmail] = useState("");
