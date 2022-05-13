@@ -1,0 +1,39 @@
+######### SAMPLE DATA FOR Dynamic Pricing ###########
+
+
+
+room_rate = 30
+
+holiday_multiplier = 1.5
+seasonal_multiplier = 2.5
+
+loyalty_points = 7850
+
+
+guests = 2
+if guests<=2:
+    guests=2
+
+
+# regular season + regular day
+curr_multiplier = 1
+price = curr_multiplier * room_rate - 0.0001*loyalty_points + (guests-2) * room_rate * 0.05
+
+
+# regular season + holiday
+curr_multiplier = holiday_multiplier
+price = curr_multiplier * room_rate - 0.0002*loyalty_points + (guests-2) * room_rate * 0.07
+
+
+# seasonal + regular day
+curr_multiplier = seasonal_multiplier
+price = curr_multiplier * room_rate - 0.0003*loyalty_points + (guests-2) * room_rate * 0.07
+
+# seasonal + holiday day
+curr_multiplier = seasonal_multiplier + holiday_multiplier/4 
+price = curr_multiplier * room_rate - 0.0005*loyalty_points + (guests-2) * room_rate * 0.125
+
+
+# for every amenities add 2 to 5 $ extra on front end
+
+# For every 1000 loyaly bonus user gets 1$ off - when he's trying to pay using loyalty bonus
