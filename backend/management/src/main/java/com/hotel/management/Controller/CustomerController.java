@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.hotel.management.Model.Customer;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/customer")
 public class CustomerController {
 
