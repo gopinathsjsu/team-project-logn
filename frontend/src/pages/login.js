@@ -24,8 +24,9 @@ export default function Login() {
         password: password,
       },
     });
-    console.log("KKK: ", data.jwtToken);
+    console.log("KKK: ", data);
     localStorage.setItem('token', data.jwtToken)
+    localStorage.setItem('user_id', data.id)
     router.push('/')
   };
 
