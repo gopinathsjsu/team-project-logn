@@ -26,6 +26,8 @@ public class CustomerServiceImpl implements CustomerService , UserDetailsService
     @Autowired
     CustomerRepository customerRepository;
 
+
+
     @Override
     public ResponseEntity<String> addCustomer(Customer c) {
         System.out.println("user email - "+c.getEmail());
@@ -53,6 +55,11 @@ public class CustomerServiceImpl implements CustomerService , UserDetailsService
         }
 
 
+    }
+    @Override
+    public Customer getUserByUserName(String userName){
+        Customer customer = customerRepository.findByEmail(userName);
+        return customer;
     }
 
     @Override

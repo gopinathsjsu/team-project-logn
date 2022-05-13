@@ -11,4 +11,6 @@ public interface CustomerService {
     public Customer getCustomerById(long id);
     public UserDetails loadUserByUsername(String userName);
 
+    public Customer getUserByUserName(String userName);
+
 }
