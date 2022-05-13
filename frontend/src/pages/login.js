@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import config from '../config'
+import config from "../config";
+import postRequest from "../api/postAPI";
+import Router , {useRouter}  from 'next/router';
 
 export default function Login() {
+  const router = useRouter()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -14,10 +17,17 @@ export default function Login() {
     setPassword(event.target.value);
   };
 
-  const handleLogin = (event) => {
-    console.log("LOGIN")
-    console.log(username, password);
-  }
+  const handleLogin = async (event) => {
+    const data = await postRequest("/login", {
+      body: {
+        username: email,
+        password: password,
+      },
+    });
+    console.log("KKK: ", data.jwtToken);
+    localStorage.setItem('token', data.jwtToken)
+    router.push('/')
+  };
 
   return (
     <div className="container h-80 flex items-center justify-center">
@@ -46,7 +56,12 @@ export default function Login() {
           />
         </label>
 
-        <button className="w-full border-2 border-black rounded-lg py-2" onClick={(event) => {handleLogin(event)}}>
+        <button
+          className="w-full border-2 border-black rounded-lg py-2"
+          onClick={(event) => {
+            handleLogin(event);
+          }}
+        >
           Log In
         </button>
         <div className="mt-4">

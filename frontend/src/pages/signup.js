@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { add } from "date-fns";
-import config from '../config'
+import config from "../config";
+import postRequest from "../api/postAPI";
+import Router , {useRouter}  from 'next/router';
 
 export default function SignUp() {
+
+  const router = useRouter()
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -30,7 +35,16 @@ export default function SignUp() {
     setMobile(event.target.value);
   };
 
-  const handleSignup = (event) => {};
+  const handleSignup = async (event) => {
+    const response = await postRequest("/signup", {
+      email: email,
+      password: password,
+      name: name,
+      address: address,
+      mobile: mobile,
+    });
+    router.push('/login')
+  };
 
   return (
     <div className="container flex items-center justify-center">

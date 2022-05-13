@@ -8,7 +8,6 @@ import com.hotel.management.Service.CustomerService;
 import com.hotel.management.Service.HotelService;
 import com.hotel.management.utility.JWTUtility;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -66,7 +65,12 @@ public class AuthenticationController {
         final String token =
                 jwtUtility.generateToken(userDetails);
 
+        Customer customer = customerService.getUserByUserName(jwtRequest.getUsername());
+        JwtResponse response = new JwtResponse();
+        response.setId(customer.getId());
+        response.setJwtToken(token);
 
-        return  new JwtResponse(token);
+
+        return  response;
     }
 }
