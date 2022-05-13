@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import getWithAuth from "../api/getWithAuth";
+import putWithAuth from "../api/putWithAuth";
 
 export default function account() {
   const [userDetails, setUserDetails] = useState({});
@@ -28,9 +29,28 @@ export default function account() {
     getUserDetails();
   }, []);
 
-  const handleSave = () => {
+  const handleSave = async () => {
     console.log("SAVE");
+    let temp_password = "";
+    if (userPassword == "") {
+      temp_password = userDetails.password;
+    } else {
+      temp_password = userPassword;
+    }
     setEditMode(false);
+    const data = await putWithAuth(
+      "/customer/update/" + localStorage.getItem("user_id"),
+      {
+        body: {
+          email: userEmail,
+          password: temp_password,
+          name: userName,
+          address: userAddress,
+          mobile: userMobile,
+        },
+      }
+    );
+    window.location.reload();
   };
 
   return (
