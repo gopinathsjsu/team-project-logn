@@ -50,7 +50,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         System.out.println("http-> "+http.csrf().toString());
         http.cors().and().csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/login", "/signup").permitAll()
+                .antMatchers("/login", "/signup", "/up").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
