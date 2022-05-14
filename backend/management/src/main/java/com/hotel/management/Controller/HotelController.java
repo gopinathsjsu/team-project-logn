@@ -68,6 +68,16 @@ public class HotelController {
         return hotelService.searchHotels(query);
     }
 
+//    @GetMapping("/search")
+//    public ResponseEntity<List<Hotel>> searchHotel(@RequestParam String location,
+//                                                   @RequestParam String startDate,
+//                                                   @RequestParam String endDate){
+//
+//        return hotelService.searchHotel(location,startDate,endDate);
+//    }
+
+
+
     @GetMapping("/all")
     public ResponseEntity<List<Hotel>> allHotels(){
         return hotelService.searchAllHotel();
@@ -78,6 +88,12 @@ public class HotelController {
         long parsed_id = Long.parseLong(id);
         Hotel hotel = hotelService.getHotelById(parsed_id);
         return new ResponseEntity<>(hotel, HttpStatus.OK);
+    }
+
+    @GetMapping("/roomsbyhotel/{id}")
+    public ResponseEntity<List<Rooms>> getRoomsbyHotelId(@PathVariable String id){
+        long parsed_id = Long.parseLong(id);
+        return hotelService.getRoomsbyHotelId(id);
     }
 
 

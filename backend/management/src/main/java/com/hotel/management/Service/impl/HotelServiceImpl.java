@@ -1,6 +1,7 @@
 package com.hotel.management.Service.impl;
 
 import com.hotel.management.Model.Hotel;
+import com.hotel.management.Model.Rooms;
 import com.hotel.management.Repository.HotelRepository;
 import com.hotel.management.Repository.RoomRepository;
 import com.hotel.management.Service.HotelService;
@@ -51,9 +52,18 @@ public class HotelServiceImpl implements HotelService {
             return new ResponseEntity<>(hotelRepository.findAll(),HttpStatus.OK);
     }
 
+    public ResponseEntity<List<Hotel>> searchHotel(String location, String startDate, String endDate){
+
+        return null;
+    }
+
+
 
     @Override
     public Hotel getHotelById(long id) {
         return hotelRepository.findById(id).orElse(null);
+    }
+    public ResponseEntity<List<Rooms>> getRoomsbyHotelId(String id){
+        return new ResponseEntity<>(roomRepository.getRoomByHotelId(id),HttpStatus.OK);
     }
 }
