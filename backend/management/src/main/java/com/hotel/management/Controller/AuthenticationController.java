@@ -43,6 +43,11 @@ public class AuthenticationController {
 
         return customerService.addCustomer(data);
     }
+    
+    @GetMapping("/up")
+    public String up() {
+        return "ok";
+    }
 
 
     @PostMapping("/login")
