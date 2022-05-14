@@ -19,8 +19,13 @@ export default function findHotel() {
     });
   };
 
+  const [searchInput, setSearchInput] = useState("");
+
   return (
-    <div className="container mt-8">
+    <div className="container flex flex-col items-center  mt-8">
+      <div className="my-8 w-1/3">
+        <input placeholder="Search" className="w-full p-2 rounded-lg" type="text" onChange={(e) => setSearchInput(e.target.value)} />
+      </div>
       {hotelDetails.map((item) => {
         return (
           <div
