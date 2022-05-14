@@ -3,11 +3,10 @@ import Link from "next/link";
 import { add } from "date-fns";
 import config from "../config";
 import postRequest from "../api/postAPI";
-import Router , {useRouter}  from 'next/router';
+import Router, { useRouter } from "next/router";
 
 export default function SignUp() {
-
-  const router = useRouter()
+  const router = useRouter();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -37,13 +36,17 @@ export default function SignUp() {
 
   const handleSignup = async (event) => {
     const response = await postRequest("/signup", {
-      email: email,
-      password: password,
-      name: name,
-      address: address,
-      mobile: mobile,
+      body: {
+        email: email,
+        password: password,
+        name: name,
+        address: address,
+        mobile: mobile,
+        role: "USER",
+      },
     });
-    router.push('/login')
+    console.log("INSIDE");
+    router.push("/login");
   };
 
   return (

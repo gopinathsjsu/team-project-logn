@@ -85,8 +85,9 @@ public class HotelController {
     }
 
     @GetMapping("/get/{id}")
-    public ResponseEntity<Hotel> getHotelById(@PathVariable long id){
-        Hotel hotel = hotelService.getHotelById(id);
+    public ResponseEntity<Hotel> getHotelById(@PathVariable String id){
+        long parsed_id = Long.parseLong(id);
+        Hotel hotel = hotelService.getHotelById(parsed_id);
         return new ResponseEntity<>(hotel, HttpStatus.OK);
     }
 

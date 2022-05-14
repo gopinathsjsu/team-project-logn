@@ -1,10 +1,7 @@
 import config from "../config";
 
-const articles_fetcher = async (
-  endpoint,
-  params = {}
-) => {
-  const res = await fetch(config['BACKEND_URL']+endpoint, {
+const articles_fetcher = async (endpoint, params = {}) => {
+  const res = await fetch(config["BACKEND_URL"] + endpoint, {
     method: params.method || "POST",
     ...(Boolean(params.body) && {
       body: JSON.stringify(params.body),
@@ -24,8 +21,15 @@ const articles_fetcher = async (
     // Attach extra info to the error object.
     error.info = await res.json();
     error.status = res.status;
+    console.log(error);
 
     throw error;
+  }
+  
+  if (endpoint == "/signup") {
+    return res.text();
+  } else {
+    return res.json();
   }
 
   switch (params.type) {

@@ -29,6 +29,8 @@ const articles_fetcher = async (
     throw error;
   }
 
+  return res.json();
+
   switch (params.type) {
     case "text":
       return res.text();
