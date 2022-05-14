@@ -50,6 +50,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         System.out.println("http-> "+http.csrf().toString());
         http.cors().and().csrf().disable()
                 .authorizeRequests()
+<<<<<<< HEAD
                 .antMatchers("/login", "/signup", "/up").permitAll()
                 .anyRequest()
                 .authenticated()
@@ -57,6 +58,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+=======
+                .antMatchers("/**","/login", "/signup").permitAll();
+//                .anyRequest()
+//                .authenticated()
+//                .and()
+//                .sessionManagement()
+//                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+>>>>>>> edit-booking
 
     }
 }

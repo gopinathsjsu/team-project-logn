@@ -32,6 +32,9 @@ public class RewardsServiceImpl implements RewardsService {
     @Override
     public Rewards getRewardsByCustId(long id) {
         Rewards rewards = rewardsRepository.findByCustId(id); //.orElse(null);
+        if(rewards==null){
+            return null;
+        }
         return rewards;
     }
 }
