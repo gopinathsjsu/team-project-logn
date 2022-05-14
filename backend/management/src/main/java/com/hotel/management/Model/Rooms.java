@@ -4,6 +4,9 @@ import javax.persistence.*;
 
 @Entity
 public class Rooms {
+    public Rooms(){
+
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,9 +22,6 @@ public class Rooms {
     @JoinColumn(name="hotel", referencedColumnName="hotel_id")
     private Hotel hotel;
 
-    public Rooms(){
-
-    }
     public long getId() {
         return id;
     }

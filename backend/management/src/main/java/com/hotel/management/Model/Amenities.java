@@ -87,4 +87,18 @@ public class Amenities {
     public void setAllMeals(boolean allMeals) {
         this.allMeals = allMeals;
     }
+
+    @Override
+    public String toString() {
+        return "Amenities{" +
+                "id=" + id +
+                ", dailyBreakfast=" + dailyBreakfast +
+                ", lunch=" + lunch +
+                ", dinner=" + dinner +
+                ", swimmingPool=" + swimmingPool +
+                ", parking=" + parking +
+                ", gym=" + gym +
+                ", allMeals=" + allMeals +
+                '}';
+    }
 }

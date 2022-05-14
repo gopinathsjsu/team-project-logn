@@ -8,7 +8,7 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Entity
-@ToString
+//@ToString
 public class RoomBooked {
 
     public RoomBooked(){
@@ -25,7 +25,7 @@ public class RoomBooked {
 //    @JsonIgnore
     private Amenities amenities;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "room_id")
     @JsonIgnoreProperties({"hotel"})
     private Rooms rooms;
@@ -35,6 +35,7 @@ public class RoomBooked {
 //    @ManyToOne
 //    @JoinColumn(name="booking", referencedColumnName="booking_id")
 //    private Booking booking;
+
 
     public long getId() {
         return id;
@@ -69,5 +70,13 @@ public class RoomBooked {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "RoomBooked{" +
+                "id=" + id +
+                ", amenities=" + amenities +
+                ", rooms=" + rooms +
+                ", rate=" + rate +
+                '}';
+    }
 }

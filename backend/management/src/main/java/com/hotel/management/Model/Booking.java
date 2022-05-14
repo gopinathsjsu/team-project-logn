@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Getter @Setter
+//@Getter @Setter
 public class Booking {
     public Booking() {
     }
@@ -54,7 +54,7 @@ public class Booking {
     private Customer customer;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JsonIgnoreProperties({"rooms"})
+    @JsonIgnoreProperties({"hotel","rooms"})
 //    @JsonIgnore
     private List<RoomBooked> roomBookedList;
 
@@ -71,5 +71,78 @@ public class Booking {
                 ", customer=" + customer +
                 ", roomBookedList=" + roomBookedList +
                 '}';
+    }
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getStayFrom() {
+        return stayFrom;
+    }
+
+    public void setStayFrom(String stayFrom) {
+        this.stayFrom = stayFrom;
+    }
+
+    public String getStayUpto() {
+        return StayUpto;
+    }
+
+    public void setStayUpto(String stayUpto) {
+        StayUpto = stayUpto;
+    }
+
+    public double getTotalBill() {
+        return totalBill;
+    }
+
+    public void setTotalBill(double totalBill) {
+        this.totalBill = totalBill;
+    }
+
+    public boolean isCancelled() {
+        return isCancelled;
+    }
+
+    public void setCancelled(boolean cancelled) {
+        isCancelled = cancelled;
+    }
+
+    public int getNumberOfGuests() {
+        return numberOfGuests;
+    }
+
+    public void setNumberOfGuests(int numberOfGuests) {
+        this.numberOfGuests = numberOfGuests;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public List<RoomBooked> getRoomBookedList() {
+        return roomBookedList;
+    }
+
+    public void setRoomBookedList(List<RoomBooked> roomBookedList) {
+        this.roomBookedList = roomBookedList;
     }
 }

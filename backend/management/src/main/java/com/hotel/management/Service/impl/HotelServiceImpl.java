@@ -1,9 +1,14 @@
 package com.hotel.management.Service.impl;
 
+import com.hotel.management.Model.Booking;
 import com.hotel.management.Model.Hotel;
+import com.hotel.management.Model.RoomBooked;
 import com.hotel.management.Model.Rooms;
+import com.hotel.management.Repository.BookingRepository;
 import com.hotel.management.Repository.HotelRepository;
+import com.hotel.management.Repository.RoomBookedRepository;
 import com.hotel.management.Repository.RoomRepository;
+import com.hotel.management.Service.BookingService;
 import com.hotel.management.Service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +28,12 @@ public class HotelServiceImpl implements HotelService {
 
     @Autowired
     RoomRepository roomRepository;
+
+    @Autowired
+    BookingRepository bookingRepository;
+
+    @Autowired
+    RoomBookedRepository roomBookedRepository;
 
     @Override
     public ResponseEntity<Hotel> addHotel(Hotel hotel) {
@@ -46,9 +57,22 @@ public class HotelServiceImpl implements HotelService {
             hotels.addAll(hotelByname);
         }
         if(hotels.size()>0){
+
             for(Hotel hotel: hotelByCity){
                 Hotel temp = new Hotel();
 
+                List<Booking> bookingList = bookingRepository.findBookingByHotel_Id(hotel.getId());
+                List<Integer> roomIds = new ArrayList<>();
+                for(Booking booking: bookingList){
+                    List<RoomBooked> roomBookedList = booking.getRoomBookedList();
+                    for(RoomBooked rb: roomBookedList){
+                        Rooms rooms = rb.getRooms();
+                        System.out.println("rooms booked rooms - "+rooms);
+                    }
+                }
+
+
+                temp.setId(hotel.getId());
                 temp.setName(hotel.getName());
                 temp.setMobile(hotel.getMobile());
                 temp.setCity(hotel.getCity());
