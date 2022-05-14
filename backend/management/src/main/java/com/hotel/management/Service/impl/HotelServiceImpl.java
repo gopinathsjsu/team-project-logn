@@ -33,6 +33,8 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public ResponseEntity<List<Hotel>> searchHotels(String query) {
         List<Hotel> hotels = new ArrayList<>();
+        List<Hotel> searchHotelList = new ArrayList<>();
+
 
         List<Hotel> hotelByCity = hotelRepository.searchHotelsByCity(query);
         List<Hotel> hotelByname = hotelRepository.searchHotelsByName(query);
@@ -43,6 +45,26 @@ public class HotelServiceImpl implements HotelService {
         if(hotelByname!=null){
             hotels.addAll(hotelByname);
         }
+        if(hotels.size()>0){
+            for(Hotel hotel: hotelByCity){
+                Hotel temp = new Hotel();
+
+                temp.setName(hotel.getName());
+                temp.setMobile(hotel.getMobile());
+                temp.setCity(hotel.getCity());
+                temp.setState(hotel.getState());
+                temp.setCountry(hotel.getCountry());
+
+                temp.setAddress(hotel.getAddress());
+                temp.setHolidayMultiplier(hotel.getHolidayMultiplier());
+                temp.setSeasonalMulitplier(hotel.getSeasonalMulitplier());
+
+                List<Rooms> rooms = hotel.getRooms();
+                int totalRooms = rooms.size();
+
+            }
+        }
+
 
         return new ResponseEntity<>(hotels,HttpStatus.OK);
     }
