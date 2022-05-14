@@ -5,7 +5,7 @@ import postWithAuth from "../api/postWithAuth";
 import Image from "next/image";
 import CheckBox from "../components/checkbox";
 
-export default function particularHotel() {
+export default function ParticularHotel() {
   const router = useRouter();
   const id = router.query;
   const [hotelDetails, setHotelDetails] = useState([]);
@@ -113,7 +113,7 @@ export default function particularHotel() {
         custId: parseInt(localStorage.getItem("user_id")),
         hotelId: parseInt(id.id),
         stayFrom: localStorage.getItem("startDate"),
-        StayUpto: localStorage.getItem("endDate"),
+        stayUpto: localStorage.getItem("endDate"),
         totalBill: price,
         numberOfGuests: 2,
         roomBookedDtos: [
@@ -134,6 +134,7 @@ export default function particularHotel() {
       },
     });
     alert("Booking Complete!");
+    router.push("/");
   };
 
   return (
@@ -179,7 +180,7 @@ export default function particularHotel() {
           <div>
             {allRooms.map((item, index) => {
               return (
-                <div className="flex w-full justify-between">
+                <div key={item.id} className="flex w-full justify-between">
                   <div className="w-1/4">{item.type}</div>
                   <div className="w-1/4">{item.numberOfRooms}</div>
                   <div className="w-1/4">${item.rate}</div>

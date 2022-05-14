@@ -66,7 +66,7 @@ export default function Login() {
           Log In
         </button>
         <div className="mt-4">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link href="/signup">
             <u className="cursor-pointer">Sign Up</u>
           </Link>
