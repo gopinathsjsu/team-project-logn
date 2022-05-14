@@ -15,6 +15,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.hotel.management.Model.Customer;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin
 @RequestMapping("/customer")
@@ -73,6 +75,11 @@ public class CustomerController {
 	public ResponseEntity<Customer> getCustomerProfile(@PathVariable long id){
 		Customer customer = customerService.getCustomerById(id);
 		return new ResponseEntity<>(customer, HttpStatus.OK);
+	}
+
+	@GetMapping("/rewards/get")
+	public ResponseEntity<List<Rewards>> getRewardsByCustomer(@RequestParam String custId){
+		return rewardsService.getAllRewardsForCustomer(custId);
 	}
 
 

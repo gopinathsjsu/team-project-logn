@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Service
 @Transactional
@@ -36,5 +37,14 @@ public class RewardsServiceImpl implements RewardsService {
             return null;
         }
         return rewards;
+    }
+
+    @Override
+    public ResponseEntity<List<Rewards>> getAllRewardsForCustomer(String id) {
+        long customerId = Long.valueOf(id);
+
+        List<Rewards> rewardsList = rewardsRepository.findAllByCustomer_Id(customerId);
+
+        return new ResponseEntity<>(rewardsList, HttpStatus.OK);
     }
 }

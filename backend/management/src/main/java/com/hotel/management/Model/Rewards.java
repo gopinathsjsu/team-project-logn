@@ -1,5 +1,7 @@
 package com.hotel.management.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,10 +25,12 @@ public class Rewards {
 
     @OneToOne
     @JoinColumn(name = "cust_id")
+    @JsonIgnoreProperties({"password","address","mobile","email"})
     private Customer customer;
 
     @OneToOne
     @JoinColumn(name = "hotel_id")
+    @JsonIgnoreProperties({"rooms","state","country","address","holidayMultiplier","seasonalMulitplier"})
     private Hotel hotel;
 
 //    public long getId() {
