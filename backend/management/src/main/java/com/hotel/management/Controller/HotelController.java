@@ -21,8 +21,6 @@ import java.util.List;
 @RequestMapping("/hotel")
 public class HotelController {
 
-//    @Autowired
-//    HotelEmployeeService hotelEmployeeService;
 
     @Autowired
     HotelService hotelService;
@@ -32,20 +30,6 @@ public class HotelController {
         return "hello-2";
     }
 
-//    @PostMapping("/signup")
-//    public String addEmployee(@RequestBody HotelEmployee employee){
-//
-//        System.out.println("->"+employee);
-//
-//        String password = employee.getPassword();
-//        PasswordEncoder encoder = new BCryptPasswordEncoder();
-//        password = encoder.encode(password);
-//        employee.setPassword(password);
-//
-//        hotelEmployeeService.addEmployee(employee);
-//
-//        return "Success";
-//    }
 
     //add hotel
     @PostMapping("/add")
@@ -82,6 +66,11 @@ public class HotelController {
     @GetMapping("/search")
     public ResponseEntity<List<Hotel>> searchHotels(@RequestParam String query){
         return hotelService.searchHotels(query);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Hotel>> allHotels(){
+        return hotelService.searchAllHotel();
     }
 
     @GetMapping("/get/{id}")

@@ -33,17 +33,22 @@ public class HotelServiceImpl implements HotelService {
     public ResponseEntity<List<Hotel>> searchHotels(String query) {
         List<Hotel> hotels = new ArrayList<>();
 
-        List<Hotel> temp = hotelRepository.searchHotelsByCity(query);
-        List<Hotel> temp1 = hotelRepository.searchHotelsByName(query);
+        List<Hotel> hotelByCity = hotelRepository.searchHotelsByCity(query);
+        List<Hotel> hotelByname = hotelRepository.searchHotelsByName(query);
 
-        if(temp!=null){
-            hotels.addAll(temp);
+        if(hotelByCity!=null){
+            hotels.addAll(hotelByCity);
         }
-        if(temp1!=null){
-            hotels.addAll(temp1);
+        if(hotelByname!=null){
+            hotels.addAll(hotelByname);
         }
 
         return new ResponseEntity<>(hotels,HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<List<Hotel>> searchAllHotel(){
+            return new ResponseEntity<>(hotelRepository.findAll(),HttpStatus.OK);
     }
 
 
