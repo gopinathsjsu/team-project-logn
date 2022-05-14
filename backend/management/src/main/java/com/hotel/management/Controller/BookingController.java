@@ -45,70 +45,70 @@ public class BookingController {
         // subtract rooms
 
         System.out.println("book->"+bookingCreateDto);
-        Booking booking = new Booking();
+//        Booking booking = new Booking();
+//
+//        Customer customer = customerService.getCustomerById(bookingCreateDto.getCustId());
+//        Hotel hotel = hotelService.getHotelById(bookingCreateDto.getHotelId());
+//
+//        booking.setHotel(hotel);
+//        booking.setCustomer(customer);
+//
+//        booking.setStayFrom(bookingCreateDto.getStayFrom());
+//        booking.setStayUpto(bookingCreateDto.getStayUpto());
+//        booking.setTotalBill(bookingCreateDto.getTotalBill());
+//
+//
+//        booking.setNumberOfGuests(bookingCreateDto.getNumberOfGuests());
+//
+//        List<RoomBooked> roomBookedList = new ArrayList<>();
+//        for(RoomBookedDto roomBookedDto: bookingCreateDto.getRoomBookedDtos()){
+//
+//            // create ameneties for each room
+//            AmenitiesDto temp = roomBookedDto.getAmenitiesDto();
+//            Amenities amenities = new Amenities();
+//            amenities.setDinner(temp.isDinner());
+//            amenities.setDailyBreakfast(temp.isDailyBreakfast());
+//            amenities.setLunch(temp.isLunch());
+//            amenities.setSwimmingPool(temp.isSwimmingPool());
+//            amenities.setGym(temp.isGym());
+//            amenities.setParking(temp.isParking());
+//            amenities.setAllMeals(temp.isAllMeals());
+//
+//            // create room
+//            RoomBooked roomBooked = new RoomBooked();
+//            //set amenities
+//            roomBooked.setAmenities(amenities);
+//
+//            //get room
+//            Rooms room = roomService.getRoomById(roomBookedDto.getRoomId());
+//            //set room
+//            roomBooked.setRooms(room);
+//            //set rate
+//            roomBooked.setRate(roomBookedDto.getRate());
+//
+//            //update room
+//            room.setNumberOfRooms(room.getNumberOfRooms()-1);
+//            roomService.updateRoom(room);
+//
+//            roomBookedList.add(roomBooked);
 
-        Customer customer = customerService.getCustomerById(bookingCreateDto.getCustId());
-        Hotel hotel = hotelService.getHotelById(bookingCreateDto.getHotelId());
+//            //save
+//            roomBookedService.addRoomBooked(roomBooked);
+//
+//        }
+//        // set roomsbooked
+//        booking.setRoomBookedList(roomBookedList);
+//
+//        // To-Do Update rewards points
+//        // now only do subtract loyalty bonus if user is using loyaly bonus to pay for total bill.
+//        Rewards rewards = rewardsService.getRewardsByCustId(customer.getId());
+//        double bonusUsed = bookingCreateDto.getBonusUsed();
+//        double loyaltyBonus = rewards.getLoyaltyBonus();
+//        loyaltyBonus = loyaltyBonus + booking.getTotalBill()*10 - bonusUsed;
+//        rewards.setLoyaltyBonus(loyaltyBonus);
+//        rewardsService.updateRewards(rewards);
 
-        booking.setHotel(hotel);
-        booking.setCustomer(customer);
-
-        booking.setStayFrom(bookingCreateDto.getStayFrom());
-        booking.setStayUpto(bookingCreateDto.getStayUpto());
-        booking.setTotalBill(bookingCreateDto.getTotalBill());
-
-
-        booking.setNumberOfGuests(bookingCreateDto.getNumberOfGuests());
-
-        List<RoomBooked> roomBookedList = new ArrayList<>();
-        for(RoomBookedDto roomBookedDto: bookingCreateDto.getRoomBookedDtos()){
-
-            // create ameneties for each room
-            AmenitiesDto temp = roomBookedDto.getAmenitiesDto();
-            Amenities amenities = new Amenities();
-            amenities.setDinner(temp.isDinner());
-            amenities.setDailyBreakfast(temp.isDailyBreakfast());
-            amenities.setLunch(temp.isLunch());
-            amenities.setSwimmingPool(temp.isSwimmingPool());
-            amenities.setGym(temp.isGym());
-            amenities.setParking(temp.isParking());
-            amenities.setAllMeals(temp.isAllMeals());
-
-            // create room
-            RoomBooked roomBooked = new RoomBooked();
-            //set amenities
-            roomBooked.setAmenities(amenities);
-
-            //get room
-            Rooms room = roomService.getRoomById(roomBookedDto.getRoomId());
-            //set room
-            roomBooked.setRooms(room);
-            //set rate
-            roomBooked.setRate(roomBookedDto.getRate());
-
-            //update room
-            room.setNumberOfRooms(room.getNumberOfRooms()-1);
-            roomService.updateRoom(room);
-
-            roomBookedList.add(roomBooked);
-
-            //save
-            roomBookedService.addRoomBooked(roomBooked);
-
-        }
-        // set roomsbooked
-        booking.setRoomBookedList(roomBookedList);
-
-        // To-Do Update rewards points
-        // now only do subtract loyalty bonus if user is using loyaly bonus to pay for total bill.
-        Rewards rewards = rewardsService.getRewardsByCustId(customer.getId());
-        double bonusUsed = bookingCreateDto.getBonusUsed();
-        double loyaltyBonus = rewards.getLoyaltyBonus();
-        loyaltyBonus = loyaltyBonus + booking.getTotalBill()*10 - bonusUsed;
-        rewards.setLoyaltyBonus(loyaltyBonus);
-        rewardsService.updateRewards(rewards);
-
-        return bookingService.createBooking(booking);//.toString();
+        return bookingService.createBooking(bookingCreateDto);//.toString();
     }
 
     @RequestMapping("/cancel/{id}")
