@@ -10,7 +10,7 @@ public interface HotelService {
 
     public ResponseEntity<Hotel> addHotel(Hotel hotel);
 
-    public ResponseEntity<List<Hotel>> searchHotels(String query);
+    public ResponseEntity<List<Hotel>> searchHotels(String query,String  startTime,String endTime);
 
     public Hotel getHotelById(long id);
 

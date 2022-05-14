@@ -64,8 +64,9 @@ public class HotelController {
     }
 
     @GetMapping("/search")
-    public ResponseEntity<List<Hotel>> searchHotels(@RequestParam String query){
-        return hotelService.searchHotels(query);
+    public ResponseEntity<List<Hotel>> searchHotels(@RequestParam String query, @RequestParam String startTime,
+                                                    @RequestParam String endTime){
+        return hotelService.searchHotels(query, startTime, endTime);
     }
 
 

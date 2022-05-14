@@ -54,7 +54,7 @@ public class Booking {
     private Customer customer;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JsonIgnoreProperties({"rooms"})
+//    @JsonIgnoreProperties({"rooms"})
 //    @JsonIgnore
     private List<RoomBooked> roomBookedList;
 

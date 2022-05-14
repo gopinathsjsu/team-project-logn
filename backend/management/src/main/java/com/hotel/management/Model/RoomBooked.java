@@ -25,7 +25,7 @@ public class RoomBooked {
 //    @JsonIgnore
     private Amenities amenities;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "room_id")
     @JsonIgnoreProperties({"hotel"})
     private Rooms rooms;
