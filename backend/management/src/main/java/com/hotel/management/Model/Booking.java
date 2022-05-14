@@ -53,7 +53,7 @@ public class Booking {
     @JsonIgnoreProperties({"email","password","address","dob","mobile"})
     private Customer customer;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER)
     @JsonIgnoreProperties({"rooms"})
 //    @JsonIgnore
     private List<RoomBooked> roomBookedList;
