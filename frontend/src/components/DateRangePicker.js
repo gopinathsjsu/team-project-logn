@@ -16,7 +16,7 @@ export default function BasicDateRangePicker({ setDateRange }) {
         endText="Check-out"
         value={value}
         onChange={(newValue) => {
-          setDateRange(newValue);
+          setValue(newValue);
         }}
         renderInput={(startProps, endProps) => (
           <React.Fragment>
