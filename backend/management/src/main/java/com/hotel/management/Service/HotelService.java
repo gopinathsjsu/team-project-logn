@@ -15,7 +15,6 @@ public interface HotelService {
     public Hotel getHotelById(long id);
 
     public ResponseEntity<List<Hotel>> searchAllHotel();
-    public ResponseEntity<List<Hotel>> searchHotel(String location, String startDate, String endDate);
     public ResponseEntity<List<Rooms>> getRoomsbyHotelId(String id);
 
 }

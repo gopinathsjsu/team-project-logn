@@ -52,13 +52,6 @@ public class HotelServiceImpl implements HotelService {
             return new ResponseEntity<>(hotelRepository.findAll(),HttpStatus.OK);
     }
 
-    public ResponseEntity<List<Hotel>> searchHotel(String location, String startDate, String endDate){
-
-        return null;
-    }
-
-
-
     @Override
     public Hotel getHotelById(long id) {
         return hotelRepository.findById(id).orElse(null);
