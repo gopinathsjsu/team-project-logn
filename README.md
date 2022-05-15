@@ -1,43 +1,29 @@
-# Team: LogN
+# Hotel Management System by Team - LogN
 
-## Goal:
-Implement an end-to-end Hotel booking web application for a specific chain of hotels with locations around the world that integrates rewards as per the reservations for each customer.
+## Team members/Contributors:
+Each of have picked the end to end flow of a given API and designed, implemented, integrated and tested the respective APIs.
 
-## Use case:
+1. Kala Venkata Satya Phani Sai Sravya 015998827
+Contribution:
+Hotel API
+Booking API
+Amenities API
 
+2. Kaushal Karinaga Shetter Raju 015721238
+Contribution:
+Location API
+Rewards API
+Complete integration test
 
-APIs - input and output of API should be in JSON and should include error handling and validation of inputs
-APIs can be demonstrated using a basic Web/mobile UI or through Postman
-UI will be used by Customers and Hotel employees
-APIs should support following functionality:
-- Manage your Hotel rewards account
-- Search for Hotels
-- Book one or more rooms for stay up to 1 week
-- Options may be selected for each room for one or more amenities:
-  - Daily Continental Breakfast
-  - Access to fitness room
-  - Access to Swimming Pool/Jacuzzi
-  - Daily Parking
-  - All meals included (Breakfast, Lunch, Dinner)
-- Room rates based on Room types and number of guests e.g. Double rooms, Suites, Singe room ( up to guests)
-  - Use dynamic pricing - based on weekdays/weekends/holidays
-  - Seasonal - peak season such as Summer/Christmas Holiday season
-  - Customer Loyalty
-- Change/Cancel reservations
-- Enrolling as a new customer
+3. Munjal Kishorbhai Desai 014828684
+Contribution:
+designed database schema
+Customer API
+Rooms API
 
-## Use case flow:
-Attached to Repo (usecase.jpg)
-
-## Architecture Diagram:
-Attached to Repo (architecture.jpg)
-
-## Sprint Plan:
-Once a week on Friday 
-
-## Kanban Link:
-Will add after first sprint
-
-## BurnChart:
-Will add after first sprint
+4. Raj bharatbhai choksi  015558933
+Contribution:
+HotelEmployee API
+UI design
+HotelEmployee API
 
