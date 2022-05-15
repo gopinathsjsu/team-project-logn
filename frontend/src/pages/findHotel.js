@@ -69,7 +69,7 @@ export default function FindHotel() {
                   onClick={() => handleBookNow(item.id)}
                   className="bg-button-color text-white px-8 py-2 rounded-full transition-all hover:shadow-button-shadow"
                 >
-                  Book Now
+                  BookNow
                 </button>
               </div>
             </div>
