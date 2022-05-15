@@ -131,4 +131,13 @@ public class HotelServiceImpl implements HotelService {
     public ResponseEntity<List<Rooms>> getRoomsbyHotelId(String id){
         return new ResponseEntity<>(roomRepository.getRoomByHotelId(id),HttpStatus.OK);
     }
+
+
+    @Override
+    public ResponseEntity<List<Hotel>> getAllHotelsByUser(long id) {
+
+        List<Hotel> hotels = hotelRepository.findAllByCustomer_Id(id);
+
+        return new ResponseEntity<>(hotels, HttpStatus.OK);
+    }
 }

@@ -39,6 +39,7 @@ public class Hotel {
     private List<Rooms> rooms;
 
     @OneToOne
+    @JsonIgnoreProperties({"password","email","address","mobile"})
     private Customer customer;
 
     public Customer getCustomer() {

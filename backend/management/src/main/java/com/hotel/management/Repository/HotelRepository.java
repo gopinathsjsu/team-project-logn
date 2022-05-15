@@ -16,6 +16,8 @@ public interface HotelRepository extends JpaRepository<Hotel, Long> {
     @Query(value ="select * from hotel where lower(name)=?1",nativeQuery = true)
     public List<Hotel> searchHotelsByName(String name);
 
+    List<Hotel> findAllByCustomer_Id(long id);
+
 
 
 }

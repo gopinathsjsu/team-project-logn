@@ -95,6 +95,11 @@ public class HotelController {
         return hotelService.getRoomsbyHotelId(id);
     }
 
+    @GetMapping("/get/byuser/{id}")
+    public ResponseEntity<List<Hotel>> getAllHotelsByUser(@PathVariable long id){
+        return hotelService.getAllHotelsByUser(id);
+    }
+
 
 
 }
