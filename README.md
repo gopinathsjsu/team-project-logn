@@ -95,7 +95,7 @@ Visual Studio Code, Git
 ### Landing Page <br />
 ![landing (1)](https://user-images.githubusercontent.com/12899997/168460284-31ec8f20-8dc0-456a-9fe0-c8e0001b1ef6.jpg)
 
-<br />
+
 ### Signup Page <br />
 
 ![Screen Shot 2022-05-14 at 11 32 50 PM](https://user-images.githubusercontent.com/12899997/168460375-42f2b008-8516-429a-9864-61666702afaa.png)
