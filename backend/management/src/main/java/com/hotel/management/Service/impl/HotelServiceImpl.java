@@ -69,18 +69,22 @@ public class HotelServiceImpl implements HotelService {
 
                 for(Booking booking: bookingList){
                     List<RoomBooked> roomBookedList = booking.getRoomBookedList();
-                    Long startFrom = Long.valueOf(booking.getStayFrom());
-                    Long stayUpto = Long.valueOf(booking.getStayUpto());
+                    if(booking.isCancelled()==false){
+                        Long startFrom = Long.valueOf(booking.getStayFrom());
+                        Long stayUpto = Long.valueOf(booking.getStayUpto());
 
-                    if((userStartDate>=startFrom && userStartDate<=stayUpto) ||
-                            (userEndDate>=startFrom && userEndDate<=stayUpto) ||
-                            (userStartDate<=startFrom && userEndDate>=stayUpto)
-                    ){
-                        for(RoomBooked rb: roomBookedList){
-                            Rooms rooms = rb.getRooms();
-                            roomIds.put(rooms.getId(), roomIds.getOrDefault(rooms.getId(),0)+1);
+
+                        if((userStartDate>=startFrom && userStartDate<=stayUpto) ||
+                                (userEndDate>=startFrom && userEndDate<=stayUpto) ||
+                                (userStartDate<=startFrom && userEndDate>=stayUpto)
+                        ){
+                            for(RoomBooked rb: roomBookedList){
+                                Rooms rooms = rb.getRooms();
+                                roomIds.put(rooms.getId(), roomIds.getOrDefault(rooms.getId(),0)+1);
+                            }
                         }
                     }
+
                 }
 
 
