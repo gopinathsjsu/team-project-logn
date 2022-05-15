@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, StrictMode } from "react";
 import Router, { useRouter } from "next/router";
 import getWithAuth from "../api/getWithAuth";
 import postWithAuth from "../api/postWithAuth";
 import Image from "next/image";
 import CheckBox from "../components/checkbox";
+import moment from "moment";
 
 export default function ParticularHotel() {
+  const season = [6, 7, 8, 12];
+
   const router = useRouter();
   const id = router.query;
   const [hotelDetails, setHotelDetails] = useState([]);
@@ -16,6 +19,9 @@ export default function ParticularHotel() {
   const [roomRate, setRoomRate] = useState(0);
   const [roomTypeChecked, setRoomTypeChecked] = useState(false);
 
+  const [isSeaMul, setIsSeaMul] = useState(false);
+  const [isHolMul, setIsHolMul] = useState(false);
+
   const [allMeals, setAllMeals] = useState(false);
   const [breakfast, setBreakfast] = useState(false);
   const [lunch, setLunch] = useState(false);
@@ -23,6 +29,18 @@ export default function ParticularHotel() {
   const [parking, setParking] = useState(false);
   const [gym, setGym] = useState(false);
   const [pool, setPool] = useState(false);
+
+  const [totalPrice, setTotalPrice] = useState(0);
+  useEffect(() => {
+    let mul = 1;
+    if(isHolMul){
+      mul = mul * hotelDetails.holidayMultiplier;
+    }
+    if(isSeaMul){
+      mul = mul * hotelDetails.seasonalMulitplier;
+    }
+    setTotalPrice(price * mul)
+  }, [price]);
 
   const [rewardsData, setRewardsData] = useState([]);
   useEffect(async () => {
@@ -34,6 +52,72 @@ export default function ParticularHotel() {
     );
     setRewardsData(filteredRewards);
   }, [hotelDetails]);
+
+  useEffect(() => {
+    let sdate = localStorage.getItem("startDate");
+    let edate = localStorage.getItem("endDate");
+    checkWeekend(sdate, edate);
+    checkSeason(sdate, edate);
+  }, []);
+
+  function getDaysBetweenDates(start, end, dayName) {
+    var result = [];
+    var days = { sun: 0, mon: 1, tue: 2, wed: 3, thu: 4, fri: 5, sat: 6 };
+    var day = days[dayName.toLowerCase().substr(0, 3)];
+    // Copy start date
+    var current = new Date(start);
+    // Shift to next of required days
+    current.setDate(current.getDate() + ((day - current.getDay() + 7) % 7));
+    // While less than end date, add dates to result array
+    while (current < end) {
+      result.push(new Date(+current));
+      current.setDate(current.getDate() + 7);
+    }
+    return result;
+  }
+
+  const checkSeason = (start, end) => {
+    start = moment.unix(start / 1000);
+    end = moment.unix(end / 1000);
+
+    if (
+      (start.month() >= 5 && start.month() <= 7) ||
+      start.month() == 11 ||
+      (end.month() >= 5 && end.month() <= 7) ||
+      end.month() == 11
+    ) {
+      setIsSeaMul(true);
+    }
+  };
+
+  const checkWeekend = (start, end) => {
+    if (
+      getDaysBetweenDates(
+        moment.unix(start / 1000),
+        moment.unix(end / 1000),
+        "sun"
+      ).length > 0
+    ) {
+      setIsHolMul(true);
+    }
+
+    // console.log(start.format("dddd, MMMM Do, YYYY"));
+    // console.log(endd.format("dddd, MMMM Do, YYYY"));
+    // // while (start != end) {
+    //   console.log("STRAT IN: ", start)
+    //   if (
+    //     moment.unix(start / 1000).day() == 6 ||
+    //     moment.unix(start / 1000).day() == 7
+    //   ) {
+    //     console.log(moment.unix(start / 1000).day())
+    //     console.log("BRAEKING")
+    //     setIsHolMul(true);
+    //     break;
+    //   }
+    //   start = start + moment().add(86400000, 'milliseconds');
+    //   console.log("START: ", start)
+    // }
+  };
 
   useEffect(async () => {
     if (id.id != undefined) {
@@ -198,9 +282,9 @@ export default function ParticularHotel() {
             </button>
           </div>
         </div>
-        <div className="my-4">Total Price: ${price}</div>
+        <div className="my-4">Total Price: ${totalPrice}</div>
         <div className="flex flex-col items-center">
-          <div>Total points:</div>
+          <div>Total loyalty points:</div>
           {rewardsData.length == 0
             ? "0"
             : rewardsData.map((item) => {
