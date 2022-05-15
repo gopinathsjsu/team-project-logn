@@ -49,6 +49,11 @@ export default function Navbar() {
               Sign Up
             </button>
           </Link>
+          <Link href="/hotel">
+            <button className="ml-4 bg-button-color text-white px-8 py-2 rounded-full transition-all hover:shadow-button-shadow">
+              Hotel
+            </button>
+          </Link>
         </div>
       ) : (
         <div>
