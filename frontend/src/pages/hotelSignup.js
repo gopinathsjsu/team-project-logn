@@ -112,7 +112,7 @@ export default function HotelSignup() {
             handleSignup(event);
           }}
         >
-          Sign Up
+          SignUp
         </button>
       </div>
     </div>
