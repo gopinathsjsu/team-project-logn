@@ -28,7 +28,17 @@ UI design
 HotelEmployee API
 ## Github Project Board
 Below is the link to our Sprint board which was our primary platform to maintain the work remaining, % of work accomplished and readmap plan. <br />
+### SpreadSheet
 https://docs.google.com/spreadsheets/d/1Fb2GnXa-_ChFRpCMwSo4XbMoqxA_UUNs/edit?usp=sharing&ouid=115154661784700569386&rtpof=true&sd=true  
+
+### Github Project view
+https://github.com/gopinathsjsu/team-project-logn/projects
+<br />
+**Snapshot of sprints (when in progress)**
+<img width="1257" alt="Screen Shot 2022-05-14 at 9 40 08 PM" src="https://user-images.githubusercontent.com/12899997/168460706-ad999190-3035-4565-bbf9-3659696c38fb.png">
+
+<img width="1311" alt="Screen Shot 2022-05-14 at 9 40 24 PM" src="https://user-images.githubusercontent.com/12899997/168460711-484fbfbc-d65d-47b6-af81-1d13099bb786.png">
+
 
 ## Architecture and stack:
 Frontend: NextJS <br />
@@ -98,4 +108,17 @@ Visual Studio Code, Git
 ### Hotels Page 
 ![Screen Shot 2022-05-14 at 11 34 15 PM](https://user-images.githubusercontent.com/12899997/168460409-87df9ea9-b70f-4ed7-9ee9-ae31ce2e7f9a.png)
 
+## Important Screens after deployment. with load balancer:
+### Landing Page
+![1p](https://user-images.githubusercontent.com/12899997/168460545-eef3cff0-2b04-42c0-ac0e-4b0f1492e920.jpeg)
+### My Bookings
 
+![2p](https://user-images.githubusercontent.com/12899997/168460609-735fad27-a869-444f-b12e-7c5bba5bf732.jpeg)
+### Search hotel results
+![3p](https://user-images.githubusercontent.com/12899997/168460621-eca3fc88-ca8d-4054-9473-24757e26a219.jpeg)
+
+### Amenities selection for room
+![4p](https://user-images.githubusercontent.com/12899997/168460641-578433c7-6427-4ced-a9c7-a7de0c720ce6.jpeg)
+### Hotel admin view
+
+![6p](https://user-images.githubusercontent.com/12899997/168460647-d26c777b-47d7-4cfe-ac07-18466388e435.jpeg)
