@@ -113,6 +113,7 @@ export default function HotelDashboard() {
           {allBookings.map((item) => {
             return (
               <div
+              key={item.id}
                 className="flex flex-wrap justify-between w-full px-2 py-4 my-2 rounded-lg"
                 style={{ background: "rgba(255, 255, 255, 0.5)" }}
               >
@@ -135,9 +136,10 @@ export default function HotelDashboard() {
       )}
       {tab == "hotel" ? (
         <div>
-          {allHotels.map((item) => {
+          {allHotels.map((item, index) => {
             return (
               <div
+              key={index}
                 className="flex justify-between w-full px-2 py-4 my-2 rounded-lg"
                 style={{ background: "rgba(255, 255, 255, 0.5)" }}
               >
@@ -151,9 +153,9 @@ export default function HotelDashboard() {
                   </div>
                 </div>
                 <div>
-                  {item.rooms.map((item) => {
+                  {item.rooms.map((item, index) => {
                     return (
-                      <div className="flex">
+                      <div key={index} className="flex">
                         <div>
                           Type: {item.type}, Number of Rooms:{" "}
                           {item.numberOfRooms}, Rate: ${item.rate}

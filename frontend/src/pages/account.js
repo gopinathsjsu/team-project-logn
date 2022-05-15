@@ -195,6 +195,7 @@ export default function Account() {
           {bookings.map((item) => {
             return (
               <div
+              key={item.id}
                 className=" flex justify-between w-full px-2 py-4 my-2 rounded-lg"
                 style={{ background: "rgba(255, 255, 255, 0.5)" }}
               >
