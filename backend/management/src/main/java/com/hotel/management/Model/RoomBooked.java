@@ -27,7 +27,7 @@ public class RoomBooked {
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "room_id")
-    @JsonIgnoreProperties({"hotel"})
+    @JsonIgnoreProperties({"hotel","customer"})
     private Rooms rooms;
 
     private double rate;

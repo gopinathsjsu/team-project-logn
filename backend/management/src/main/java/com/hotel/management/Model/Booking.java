@@ -43,7 +43,7 @@ public class Booking {
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "hotel_id")
-    @JsonIgnoreProperties({"rooms","city","state","country","holidayMultiplier","seasonalMulitplier"})
+    @JsonIgnoreProperties({"rooms","city","state","country","holidayMultiplier","seasonalMulitplier","customer"})
 //    @JsonIgnore
     private Hotel hotel;
 

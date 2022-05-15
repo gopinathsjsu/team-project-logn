@@ -30,7 +30,7 @@ public class Rewards {
 
     @OneToOne
     @JoinColumn(name = "hotel_id")
-    @JsonIgnoreProperties({"rooms","state","country","address","holidayMultiplier","seasonalMulitplier"})
+    @JsonIgnoreProperties({"rooms","state","country","address","holidayMultiplier","seasonalMulitplier","customer"})
     private Hotel hotel;
 
 //    public long getId() {
