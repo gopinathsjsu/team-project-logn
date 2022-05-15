@@ -51,12 +51,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/login", "/signup", "/up").permitAll()
-                .anyRequest()
-                .authenticated()
-                .and()
-                .sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+               .anyRequest()
+               .authenticated()
+               .and()
+               .sessionManagement()
+               .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+       http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
 
     }
 }
