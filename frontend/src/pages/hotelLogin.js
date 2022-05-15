@@ -63,7 +63,7 @@ export default function HotelLogin() {
             handleLogin(event);
           }}
         >
-          Log In
+          LogIn
         </button>
       </div>
     </div>

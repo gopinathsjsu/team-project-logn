@@ -19,14 +19,14 @@ export default function Hotel() {
         <button
           className="mr-4 bg-button-color text-white px-8 py-2 rounded-full transition-all hover:shadow-button-shadow"
         >
-          Hotel Sign In
+          Hotel SignIn
         </button>
         </Link>
         <Link href="/hotelSignup">
         <button
           className="bg-button-color text-white px-8 py-2 rounded-full transition-all hover:shadow-button-shadow"
         >
-          Hotel Sign Up
+          Hotel SignUp
         </button>
         </Link>
       </div>
