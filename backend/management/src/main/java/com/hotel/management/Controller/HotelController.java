@@ -1,8 +1,10 @@
 package com.hotel.management.Controller;
 
+import com.hotel.management.Model.Customer;
 import com.hotel.management.Model.Hotel;
 import com.hotel.management.Model.HotelEmployee;
 import com.hotel.management.Model.Rooms;
+import com.hotel.management.Service.CustomerService;
 import com.hotel.management.Service.HotelService;
 import com.hotel.management.dto.HotelRequestDto;
 import com.hotel.management.dto.RoomDto;
@@ -25,6 +27,8 @@ public class HotelController {
     @Autowired
     HotelService hotelService;
 
+    @Autowired
+    CustomerService customerService;
     @RequestMapping("/")
     public String showHome(){
         return "hello-2";
@@ -46,6 +50,9 @@ public class HotelController {
         hotel.setState(hotelRequestDto.getState());
         hotel.setHolidayMultiplier(hotelRequestDto.getHolidayMultiplier());
         hotel.setSeasonalMulitplier(hotelRequestDto.getSeasonalMulitplier());
+
+        Customer customer = customerService.getCustomerById(hotelRequestDto.getCustId());
+        hotel.setCustomer(customer);
 
         List<Rooms> roomsList = new ArrayList<>();
         for(RoomDto dto: hotelRequestDto.getRoomDtoList()){

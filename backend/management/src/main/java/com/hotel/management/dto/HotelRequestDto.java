@@ -3,7 +3,6 @@ package com.hotel.management.dto;
 import java.util.List;
 
 public class HotelRequestDto {
-
     private String name;
     private String mobile;
 
@@ -14,6 +13,7 @@ public class HotelRequestDto {
     private Double holidayMultiplier;
     private Double seasonalMulitplier;
 
+    private long custId;
     private List<RoomDto> roomDtoList;
 
     @Override
@@ -28,6 +28,14 @@ public class HotelRequestDto {
                 ", seasonalMulitplier=" + seasonalMulitplier +
                 ", roomDtoList="  + roomDtoList +
                 '}';
+    }
+
+    public long getCustId() {
+        return custId;
+    }
+
+    public void setCustId(long custId) {
+        this.custId = custId;
     }
 
     public String getName() {

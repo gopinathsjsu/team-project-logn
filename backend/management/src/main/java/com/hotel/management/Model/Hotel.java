@@ -38,7 +38,16 @@ public class Hotel {
 //    @JoinColumn(referencedColumnName = "room_id")
     private List<Rooms> rooms;
 
+    @OneToOne
+    private Customer customer;
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
     public List<Rooms> getRooms() {
         return rooms;
