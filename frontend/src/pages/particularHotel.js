@@ -24,6 +24,17 @@ export default function ParticularHotel() {
   const [gym, setGym] = useState(false);
   const [pool, setPool] = useState(false);
 
+  const [rewardsData, setRewardsData] = useState([]);
+  useEffect(async () => {
+    const data = await getWithAuth(
+      "/customer/rewards/get?custId=" + localStorage.getItem("user_id")
+    );
+    const filteredRewards = data.filter(
+      (item) => item.hotel.id == hotelDetails.id
+    );
+    setRewardsData(filteredRewards);
+  }, [hotelDetails]);
+
   useEffect(async () => {
     if (id.id != undefined) {
       const data = await getWithAuth("/hotel/get/" + id.id);
@@ -104,6 +115,19 @@ export default function ParticularHotel() {
     }
   }, [allMeals]);
 
+  const [useRewards, setUseRewards] = useState(false);
+  const [bonusUsed, setBonusUsed] = useState(0);
+  const [bonusAvailable, setBonusAvailable] = useState(0);
+
+  useEffect(() => {
+    if (useRewards) {
+      setBonusUsed(bonusAvailable);
+      setPrice(price - parseInt(bonusAvailable) / 1000);
+    } else {
+      setBonusUsed(0);
+    }
+  }, [useRewards]);
+
   const handleBooking = () => {
     if (price == 0) {
       return alert("Select room type and Amenities!");
@@ -116,6 +140,7 @@ export default function ParticularHotel() {
         stayUpto: localStorage.getItem("endDate"),
         totalBill: price,
         numberOfGuests: 2,
+        bonusUsed: bonusUsed,
         roomBookedDtos: [
           {
             roomId: String(roomID),
@@ -174,7 +199,30 @@ export default function ParticularHotel() {
           </div>
         </div>
         <div className="my-4">Total Price: ${price}</div>
-
+        <div className="flex flex-col items-center">
+          <div>Total points:</div>
+          {rewardsData.length == 0
+            ? "0"
+            : rewardsData.map((item) => {
+                return (
+                  <div key={item.id} className="flex flex-col items-center">
+                    <div>{parseInt(item.loyaltyBonus)}</div>
+                    <div>
+                      <input
+                        onChange={(e) => {
+                          setUseRewards(!useRewards);
+                          setBonusAvailable(parseInt(item.loyaltyBonus));
+                        }}
+                        checked={useRewards}
+                        type="checkbox"
+                        className="mr-2"
+                      />
+                      Save ${parseInt(item.loyaltyBonus) / 1000}
+                    </div>
+                  </div>
+                );
+              })}
+        </div>
         <div className="w-full">
           <div>Select room type:</div>
           <div>

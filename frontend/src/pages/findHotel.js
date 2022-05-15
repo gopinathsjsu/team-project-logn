@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import getWithAuth from "../api/getWithAuth";
 import Router, { useRouter } from "next/router";
 import { da } from "date-fns/locale";
+import { data } from "autoprefixer";
 
 export default function FindHotel() {
   const router = useRouter();
@@ -20,14 +21,6 @@ export default function FindHotel() {
     setHotelDetails(data);
     console.log(data);
   }, [searchInput]);
-
-  const [rewardsData, setRewardsData] = useState([]);
-  useEffect(async () => {
-    const data = await getWithAuth(
-      "/customer/rewards/get?custId=" + localStorage.getItem("user_id")
-    );
-    console.log(data);
-  }, []);
 
   return (
     <div className="container flex flex-col items-center  mt-8">
@@ -58,7 +51,10 @@ export default function FindHotel() {
               className="w-full flex justify-between items-start rounded-lg p-4 my-2"
               style={{ background: "rgba(255, 255, 255, 0.5)" }}
             >
-              <div className="w-1/4">{item.name}</div>
+              <div className="w-1/4">
+                <div>{item.name}</div>
+                {/* <div>{data}</div> */}
+              </div>
               <div className="w-1/4">
                 <div>Address:</div>
                 <div>
